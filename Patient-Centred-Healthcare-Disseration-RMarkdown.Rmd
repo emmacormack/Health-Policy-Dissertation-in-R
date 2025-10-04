@@ -14,6 +14,8 @@ library(foreign)
 library(brant)
 library(VGAM)
 library(ggplot2)
+library(broom)
+library(dplyr)
 
 ```
 
@@ -117,6 +119,29 @@ exampledata$RRCLASS <- ordered(as.factor(exampledata$RRCLASS))
 table(exampledata$RRCLASS)
 
 ```
+## Sample Demographics
+
+```{r}
+ggplot(exampledata, aes(AGE)) + geom_bar()
+
+ggplot(exampledata, aes(GENDER)) + geom_bar()
+
+ggplot(exampledata, aes(PATSAT)) + geom_bar() + facet_wrap(~ GENDER)
+
+ggplot(exampledata, aes(ETHNICITY)) + geom_bar()
+
+ggplot(exampledata, aes(RRCLASS)) + geom_bar()
+
+ggplot(exampledata, aes(SIMD)) + geom_bar()
+
+ggplot(exampledata, aes(TRAVEL)) + geom_bar()
+
+ggplot(exampledata, aes(STAFFCOMS)) + geom_bar()
+
+ggplot(exampledata, aes(HEALTHSTAT)) + geom_bar()
+```
+
+
 ## Ordered Logit Model
 ```{r}
 model1 <- polr(PATSAT ~ TRAVEL + APPTLOC + TIMELINESS + STAFFCOMS + EFFICACY + YRSWGP + COMPASSION + SAMEGP + CONNECT + MDTSTAFF + CLOSURE + AGE + NVISITS + EXPECTATION + GENDER + HEALTHSTAT + ETHNICITY + SIMD + RRCLASS, method = "logistic", data = exampledata)
@@ -133,10 +158,45 @@ pR2(model1)
 ```
 
 ```{r}
-(exp(model1$coefficients)-1)*100
+tidy_model <- broom::tidy(model1, conf.int = TRUE, exponentiate = TRUE)
+
+tidy_model <- tidy_model %>% mutate(p.value = 2 * (1 - pnorm(abs(statistic))),   # calculate p-values
+    sig = ifelse(p.value < 0.05, "Significant", "Not significant")
+  )
 ```
 
 ```{r}
+# Plotting Odds Ratios, Coloured by Significance
+
+ggplot(tidy_model, aes(x = reorder(term, estimate), y = estimate, colour = sig)) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
+  geom_hline(yintercept = 1, linetype = "dashed", colour = "grey40") +
+  coord_flip() +
+  scale_colour_manual(values = c("Significant" = "#1b9e77", "Not significant" = "#d95f02")) +
+  theme_minimal()
+
+# Plotting only significant odds ratios
+
+# Filter to include only significant terms
+tidy_sig <- tidy_model %>%
+  filter(sig == "Significant")
+
+# Plot
+ggplot(tidy_sig, aes(x = reorder(term, estimate), y = estimate, colour = sig)) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
+  geom_hline(yintercept = 1, linetype = "dashed", colour = "grey40") +
+  coord_flip() +
+  scale_colour_manual(values = c("Significant" = "#1b9e77")) +
+  labs(
+    title = "Significant Odds Ratios from Ordinal Logistic Regression",
+    x = "Predictor",
+    y = "Odds Ratio (95% CI)"
+  ) +
+  theme_minimal() + 
+  geom_text(aes(label = round(estimate, 2)), hjust = -0.3, size = 3)
 
 ```
 
+Dashed line at 1 marks 'no effect'. Points >1 = positive effects, <1 = negative effects. 
