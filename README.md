@@ -1,4 +1,4 @@
-# EC's Undergraduate Dissertation Research Project in Health Policy
+ # EC's Undergraduate Dissertation Research Project in Health Policy
 
 This replicates the process I took to produce my undergraduate research project as part of my honours degree in Social and Public Policy at the University of Glasgow. I designed and researched a topical area of health policy, using quantitative and qualitative methods in the form of an online questionnaire and focus group. This project replicates the quantitative element, demonstrating my R modelling capabilities. **The data was generated using ChatGPT (see prompt below), to protect my real-world collected data.** Click here to download the excel file of fake data! 
 [XLSX File of Fake Data!](https://github.com/user-attachments/files/22699242/example_patient_satisfaction_v3.xlsx)
@@ -10,21 +10,21 @@ To analyse the (fake) quesitonnaire data an ordinal logistic regression model wa
 
 ## Sample Demographics
 
-<img width="442" height="516" alt="image" src="https://github.com/user-attachments/assets/1c74080b-edd0-4f07-bae2-e797f0e1034a" />
+<img width="200" height="250" alt="image" src="https://github.com/user-attachments/assets/1c74080b-edd0-4f07-bae2-e797f0e1034a" />
 
-<img width="442" height="516" alt="image" src="https://github.com/user-attachments/assets/c591b0d7-1306-4c81-b298-38b9fc86dec7" />
+<img width="200" height="250" alt="image" src="https://github.com/user-attachments/assets/c591b0d7-1306-4c81-b298-38b9fc86dec7" />
 
-<img width="442" height="516" alt="image" src="https://github.com/user-attachments/assets/94e2888f-d35b-42ca-95fa-2f3f28013e3d" />
+<img width="200" height="250" alt="image" src="https://github.com/user-attachments/assets/94e2888f-d35b-42ca-95fa-2f3f28013e3d" />
 
-<img width="736" height="516" alt="image" src="https://github.com/user-attachments/assets/29085d11-7e3b-46e0-8ec3-72d8b5607442" />
+<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/29085d11-7e3b-46e0-8ec3-72d8b5607442" />
 
-<img width="665" height="516" alt="image" src="https://github.com/user-attachments/assets/04eb9065-b184-4f98-ade2-a32f0593dd49" />
+<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/04eb9065-b184-4f98-ade2-a32f0593dd49" />
 
-<img width="665" height="516" alt="image" src="https://github.com/user-attachments/assets/3b093a74-a645-47af-8668-de453b569f97" />
+<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/3b093a74-a645-47af-8668-de453b569f97" />
 
-<img width="665" height="516" alt="image" src="https://github.com/user-attachments/assets/86689a21-8818-4891-ae14-50386b596ea3" />
+<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/86689a21-8818-4891-ae14-50386b596ea3" />
 
-<img width="665" height="516" alt="image" src="https://github.com/user-attachments/assets/1f2e0e52-8016-4857-b34c-804e95c115dc" />
+<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/1f2e0e52-8016-4857-b34c-804e95c115dc" />
 
 ## Ordered Logit Model
 
