@@ -6,7 +6,7 @@ This replicates the process I took to produce my undergraduate research project 
 ### Which factors influence patient satisfaction with general practices in Scotland?
 
 ### Ordinal Logistic Regression Analysis ###
-To analyse the (fake) quesitonnaire data an ordinal logistic regression model was administered using R software. This type of model allows for comparison between satisfaction levels, while accounting for other factors. The model fit was tested with the McFadden R2 and the Proportional Regression Assumption, which identifies whether the model results can be relied upon. Odds ratios were used to interpret the results of the model.
+To analyse the data an ordinal logistic regression model was administered using the `polr()` function from the `MASS` package in R Studio. This type of model allows for comparison between satisfaction levels, while accounting for other factors. The model fit was tested with the McFadden R2 and the Proportional Regression Assumption, which identifies whether the model results can be relied upon. Odds ratios were used to interpret the results of the model for the significant (p <= 0.05variables in the model.
 
 ## Sample Demographics
 
@@ -37,58 +37,12 @@ logLik(model1)
 
 pR2(model1)
 ```
-## Generate Odds Ratios Graph
-```
-tidy_model <- broom::tidy(model1, conf.int = TRUE, exponentiate = TRUE)
 
-tidy_model <- tidy_model %>% mutate(p.value = 2 * (1 - pnorm(abs(statistic))),   # calculate p-values
-                                    sig = ifelse(p.value < 0.05, "Significant", "Not significant"))
-                                    
-# Plotting Odds Ratios, Coloured by Significance
-
-ggplot(tidy_model, aes(x = reorder(term, estimate), y = estimate, colour = sig)) +
-  geom_point(size = 3) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
-  geom_hline(yintercept = 1, linetype = "dashed", colour = "grey40") +
-  coord_flip() +
-  scale_colour_manual(values = c("Significant" = "cadetblue", "Not significant" = "#d95f02")) +
-  theme_minimal()
-
-# Plotting only significant odds ratios
-
-# Filter to include only significant terms
-tidy_sig <- tidy_model %>%
-  filter(sig == "Significant")
-
-# Plot
-ggplot(tidy_sig, aes(x = reorder(term, estimate), y = estimate, colour = sig)) +
-  geom_point(size = 3) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
-  geom_hline(yintercept = 1, linetype = "dashed", colour = "grey40") +
-  coord_flip() +
-  scale_colour_manual(values = c("Significant" = "cadetblue")) +
-  labs(
-    title = "Significant Odds Ratios from Ordinal Logistic Regression",
-    x = "Predictor",
-    y = "Odds Ratio (95% CI)"
-  ) +
-  theme_minimal() + 
-  geom_text(aes(label = round(estimate, 2)), hjust = -0.3, size = 3)
-```
-
-<img width="1001" height="516" alt="image" src="https://github.com/user-attachments/assets/3578c6db-b927-484f-8de7-ca01dea91c25" />
 
 # Ordinal Logistic Regression Results
 
-Model Call
-```
-PATSAT ~ TRAVEL + APPTLOC + TIMELINESS + STAFFCOMS + EFFICACY + YRSWGP +
-COMPASSION + SAMEGP + CONNECT + MDTSTAFF + CLOSURE + AGE + NVISITS +
-EXPECTATION + GENDER + HEALTHSTAT + ETHNICITY + SIMD + RRCLASS
-```
----
 
-## Coefficients
+### Coefficients
 
 | **Predictor** | **Estimate** | **Std. Error** | **t value** |
 |----------------|--------------|----------------|-------------|
@@ -179,7 +133,7 @@ EXPECTATION + GENDER + HEALTHSTAT + ETHNICITY + SIMD + RRCLASS
 
 ---
 
-## Intercepts
+### Intercepts
 
 | **Threshold** | **Estimate** | **Std. Error** | **t value** |
 |----------------|--------------|----------------|-------------|
@@ -190,10 +144,60 @@ EXPECTATION + GENDER + HEALTHSTAT + ETHNICITY + SIMD + RRCLASS
 
 ---
 
-## Model Fit
+### Model Fit
 
 | **Statistic** | **Value** |
 |----------------|-----------|
 | Residual Deviance | 722.1547 |
 | AIC | 860.1547 |
+
+### Odds Ratios
+```
+tidy_model <- broom::tidy(model1, conf.int = TRUE, exponentiate = TRUE)
+
+tidy_model <- tidy_model %>% mutate(p.value = 2 * (1 - pnorm(abs(statistic))),   # calculate p-values
+                                    sig = ifelse(p.value < 0.05, "Significant", "Not significant"))
+                                    
+# Plotting Odds Ratios, Coloured by Significance
+
+ggplot(tidy_model, aes(x = reorder(term, estimate), y = estimate, colour = sig)) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
+  geom_hline(yintercept = 1, linetype = "dashed", colour = "grey40") +
+  coord_flip() +
+  scale_colour_manual(values = c("Significant" = "cadetblue", "Not significant" = "#d95f02")) +
+  theme_minimal()
+
+# Plotting only significant odds ratios
+
+# Filter to include only significant terms
+tidy_sig <- tidy_model %>%
+  filter(sig == "Significant")
+
+# Plot
+ggplot(tidy_sig, aes(x = reorder(term, estimate), y = estimate, colour = sig)) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
+  geom_hline(yintercept = 1, linetype = "dashed", colour = "grey40") +
+  coord_flip() +
+  scale_colour_manual(values = c("Significant" = "cadetblue")) +
+  labs(
+    title = "Significant Odds Ratios from Ordinal Logistic Regression",
+    x = "Predictor",
+    y = "Odds Ratio (95% CI)"
+  ) +
+  theme_minimal() + 
+  geom_text(aes(label = round(estimate, 2)), hjust = -0.3, size = 3)
+```
+
+<img width="1001" height="516" alt="image" src="https://github.com/user-attachments/assets/3578c6db-b927-484f-8de7-ca01dea91c25" />
+
+## References
+
+literature
+
+packages
+
+ChatGPT prompt to generate data:
+
 
