@@ -6,36 +6,36 @@ This replicates the process I took to produce my undergraduate research project 
 ### Which factors influence patient satisfaction with general practices in Scotland?
 
 ### Ordinal Logistic Regression Analysis ###
-To analyse the data an ordinal logistic regression model was administered using the `polr()` function from the `MASS` package in R Studio. This type of model allows for comparison between satisfaction levels, while accounting for other factors. The model fit was tested with the McFadden R2 and the Proportional Regression Assumption, which identifies whether the model results can be relied upon. Odds ratios were used to interpret the results of the model for the significant (p <= 0.05variables in the model.
+To analyse the data an ordinal logistic regression model was administered using the `polr()` function from the `MASS` package in R Studio. This type of model allows for comparison between satisfaction levels, while accounting for other factors. The model fit was tested with the McFadden R2 and the Proportional Regression Assumption, which identifies whether the model results can be relied upon. Odds ratios were used to interpret the results of the model for the significant (p <= 0.05) variables.
 
 ## Sample Demographics
 
-<img width="200" height="250" alt="image" src="https://github.com/user-attachments/assets/1c74080b-edd0-4f07-bae2-e797f0e1034a" />
+These graphs show the sample distributions for variables in the data, demonstrating a use of the `ggplot2` package. 
 
-<img width="200" height="250" alt="image" src="https://github.com/user-attachments/assets/c591b0d7-1306-4c81-b298-38b9fc86dec7" />
+<img width="250" height="300" alt="image" src="https://github.com/user-attachments/assets/1a61825b-42d6-49c5-99b3-3bbed13fecc9" />
 
-<img width="200" height="250" alt="image" src="https://github.com/user-attachments/assets/94e2888f-d35b-42ca-95fa-2f3f28013e3d" />
+<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/5a5be015-3fa0-469d-a2a4-ad57c0f259d0" />
 
-<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/29085d11-7e3b-46e0-8ec3-72d8b5607442" />
+<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/a9d51e7e-f04f-4d76-8898-ae9a6efb33d3" />
 
-<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/04eb9065-b184-4f98-ade2-a32f0593dd49" />
+<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/1487855f-8aa6-4f5d-b3e5-830073cdeb01" />
 
-<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/3b093a74-a645-47af-8668-de453b569f97" />
+<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/6ed25879-ed0a-4df7-9a23-4f4b41a103f8" />
 
-<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/86689a21-8818-4891-ae14-50386b596ea3" />
+<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/0d8f79cf-eeb8-4607-8aa9-73647a5390d1" />
 
-<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/1f2e0e52-8016-4857-b34c-804e95c115dc" />
+<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/898196bc-119f-4707-8783-77ec54475857" />
+
+<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/23799f7f-8a09-4d71-a842-437fc13326bc" />
+
+<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/031121b6-260f-49db-8ffc-c9e4a3776e83" />
+
 
 ## Ordered Logit Model
 
 ```
 model1 <- polr(PATSAT ~ TRAVEL + APPTLOC + TIMELINESS + STAFFCOMS + EFFICACY + YRSWGP + COMPASSION + SAMEGP + CONNECT + MDTSTAFF + CLOSURE + AGE + NVISITS + EXPECTATION + GENDER + HEALTHSTAT + ETHNICITY + SIMD + RRCLASS, method = "logistic", data = exampledata)
 
-summary(model1)
-
-logLik(model1)
-
-pR2(model1)
 ```
 
 
@@ -152,45 +152,12 @@ pR2(model1)
 | AIC | 860.1547 |
 
 ### Odds Ratios
-```
-tidy_model <- broom::tidy(model1, conf.int = TRUE, exponentiate = TRUE)
 
-tidy_model <- tidy_model %>% mutate(p.value = 2 * (1 - pnorm(abs(statistic))),   # calculate p-values
-                                    sig = ifelse(p.value < 0.05, "Significant", "Not significant"))
-                                    
-# Plotting Odds Ratios, Coloured by Significance
+<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/6133cee9-3f9a-4ca7-adf6-44697fa5ebe0" />
 
-ggplot(tidy_model, aes(x = reorder(term, estimate), y = estimate, colour = sig)) +
-  geom_point(size = 3) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
-  geom_hline(yintercept = 1, linetype = "dashed", colour = "grey40") +
-  coord_flip() +
-  scale_colour_manual(values = c("Significant" = "cadetblue", "Not significant" = "#d95f02")) +
-  theme_minimal()
+What this means
 
-# Plotting only significant odds ratios
-
-# Filter to include only significant terms
-tidy_sig <- tidy_model %>%
-  filter(sig == "Significant")
-
-# Plot
-ggplot(tidy_sig, aes(x = reorder(term, estimate), y = estimate, colour = sig)) +
-  geom_point(size = 3) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
-  geom_hline(yintercept = 1, linetype = "dashed", colour = "grey40") +
-  coord_flip() +
-  scale_colour_manual(values = c("Significant" = "cadetblue")) +
-  labs(
-    title = "Significant Odds Ratios from Ordinal Logistic Regression",
-    x = "Predictor",
-    y = "Odds Ratio (95% CI)"
-  ) +
-  theme_minimal() + 
-  geom_text(aes(label = round(estimate, 2)), hjust = -0.3, size = 3)
-```
-
-<img width="1001" height="516" alt="image" src="https://github.com/user-attachments/assets/3578c6db-b927-484f-8de7-ca01dea91c25" />
+Give more meaningful labels
 
 ## References
 
