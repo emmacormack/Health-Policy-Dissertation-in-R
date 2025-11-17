@@ -14,21 +14,21 @@ These graphs show the sample distributions for variables in the data, demonstrat
 
 <img width="250" height="300" alt="image" src="https://github.com/user-attachments/assets/1a61825b-42d6-49c5-99b3-3bbed13fecc9" />
 
-<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/5a5be015-3fa0-469d-a2a4-ad57c0f259d0" />
+<img width="250" height="300" alt="image" src="https://github.com/user-attachments/assets/5a5be015-3fa0-469d-a2a4-ad57c0f259d0" />
 
-<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/a9d51e7e-f04f-4d76-8898-ae9a6efb33d3" />
+<img width="250" height="300" alt="image" src="https://github.com/user-attachments/assets/a9d51e7e-f04f-4d76-8898-ae9a6efb33d3" />
 
-<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/1487855f-8aa6-4f5d-b3e5-830073cdeb01" />
+<img width="300" height="250" alt="image" src="https://github.com/user-attachments/assets/1487855f-8aa6-4f5d-b3e5-830073cdeb01" />
 
-<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/6ed25879-ed0a-4df7-9a23-4f4b41a103f8" />
+<img width="300" height="250" alt="image" src="https://github.com/user-attachments/assets/6ed25879-ed0a-4df7-9a23-4f4b41a103f8" />
 
-<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/0d8f79cf-eeb8-4607-8aa9-73647a5390d1" />
+<img width="300" height="250" alt="image" src="https://github.com/user-attachments/assets/0d8f79cf-eeb8-4607-8aa9-73647a5390d1" />
 
-<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/898196bc-119f-4707-8783-77ec54475857" />
+<img width="300" height="250" alt="image" src="https://github.com/user-attachments/assets/898196bc-119f-4707-8783-77ec54475857" />
 
-<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/23799f7f-8a09-4d71-a842-437fc13326bc" />
+<img width="300" height="250" alt="image" src="https://github.com/user-attachments/assets/23799f7f-8a09-4d71-a842-437fc13326bc" />
 
-<img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/031121b6-260f-49db-8ffc-c9e4a3776e83" />
+<img width="300" height="250" alt="image" src="https://github.com/user-attachments/assets/031121b6-260f-49db-8ffc-c9e4a3776e83" />
 
 
 ## Ordered Logit Model
