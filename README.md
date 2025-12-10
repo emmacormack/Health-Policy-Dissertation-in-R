@@ -158,9 +158,12 @@ model1 <- polr(PATSAT ~ TRAVEL + APPTLOC + TIMELINESS + STAFFCOMS + EFFICACY + Y
 Each odds ratio value demonstrates the odds of being in a higher satisfaction category, vs lower categories, for a one-unit increase in the predictor.
 
 OR < 1 = Predictor increases odds of higher satisfaction
+
 OR < 1 = Predictor decreases odds of higher satisfaction
 
 ##### Interpreting Odds Ratios:
+
+This plot illustrates the odds ratios for significant variables in the model. 
 
 `COMPASSION5` indicates GP compassion rating of 'very good'. An odds ratio of 16.67 suggests that patients who rate their GP compassion as 'very good' are aroud 16 times more likely to give a higher satisfaction rating. 
 
