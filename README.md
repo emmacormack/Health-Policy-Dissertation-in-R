@@ -155,16 +155,104 @@ model1 <- polr(PATSAT ~ TRAVEL + APPTLOC + TIMELINESS + STAFFCOMS + EFFICACY + Y
 
 <img width="758" height="606" alt="image" src="https://github.com/user-attachments/assets/6133cee9-3f9a-4ca7-adf6-44697fa5ebe0" />
 
-What this means
+Each odds ratio value demonstrates the odds of being in a higher satisfaction category, vs lower categories, for a one-unit increase in the predictor.
 
-Give more meaningful labels
+OR < 1 = Predictor increases odds of higher satisfaction
+OR < 1 = Predictor decreases odds of higher satisfaction
 
-## References
+##### Interpreting Odds Ratios:
 
-literature
+`COMPASSION5` indicates GP compassion rating of 'very good'. An odds ratio of 16.67 suggests that patients who rate their GP compassion as 'very good' are aroud 16 times more likely to give a higher satisfaction rating. 
 
-packages
+`TIMELINESS5` indicates appointment timeliness of 'very good'. An odds ratio of 11.29 suggests that patients who rate their GP appointment timeliness as 'very good' are around 11 times more likely to giver a higher satisfaction rating. 
 
-ChatGPT prompt to generate data:
+And so on!
 
+## R Packages References
+`MASS`
 
+Venables, W. N. & Ripley, B.
+  D. (2002) Modern Applied
+  Statistics with S. Fourth
+  Edition. Springer, New York.
+  ISBN 0-387-95457-0
+
+  `car`
+ 
+  Fox J, Weisberg S (2019).
+  _An R Companion to Applied
+  Regression_, Third edition.
+  Sage, Thousand Oaks CA.
+  <https://socialsciences.mcmaster.ca/jfox/Books/Companion/>.
+
+  `pscl`
+
+ Simon Jackman (2020). pscl:
+  Classes and Methods for R
+  Developed in the Political
+  Science Computational
+  Laboratory. United States
+  Studies Centre, University
+  of Sydney. Sydney, New South
+  Wales, Australia. R package
+  version 1.5.5.1. URL
+  https://github.com/atahk/pscl/
+
+  `foreign`
+ 
+   R Core Team (2023).
+  _foreign: Read Data Stored
+  by 'Minitab', 'S', 'SAS',
+  'SPSS', 'Stata', 'Systat',
+  'Weka', 'dBase', ..._. R
+  package version 0.8-86,
+  <https://CRAN.R-project.org/package=foreign>.
+
+  `brant`
+ 
+  Schlegel B, Steenbergen M
+  (2020). _brant: Test for
+  Parallel Regression
+  Assumption_. R package
+  version 0.3-0,
+  <https://CRAN.R-project.org/package=brant>.
+
+  `VGAM`
+
+Thomas W. Yee (2015). Vector
+  Generalized Linear and
+  Additive Models: With an
+  Implementation in R. New
+  York, USA: Springer.
+  
+  `ggplot2`
+
+ H. Wickham. ggplot2: Elegant
+  Graphics for Data Analysis.
+  Springer-Verlag New York,
+  2016.
+
+  `broom`
+ 
+  Robinson D, Hayes A, Couch S
+  (2023). _broom: Convert
+  Statistical Objects into
+  Tidy Tibbles_. R package
+  version 1.0.5,
+  <https://CRAN.R-project.org/package=broom>.
+
+  `dplyr`
+
+Wickham H, François R, Henry
+  L, Müller K, Vaughan D
+  (2023). _dplyr: A Grammar of
+  Data Manipulation_. R
+  package version 1.1.4,
+  <https://CRAN.R-project.org/package=dplyr>.
+
+  `readxl`
+  
+  Wickham H, Bryan J (2023).
+  _readxl: Read Excel Files_.
+  R package version 1.4.3,
+  <https://CRAN.R-project.org/package=readxl>.
